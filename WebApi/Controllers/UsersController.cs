@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace WebApi.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/users")]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;

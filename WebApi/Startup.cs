@@ -81,7 +81,10 @@ namespace WebApi
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+
+                    ValidIssuer = "http://localhost:4200",
+                    ValidAudience = "http://localhost:4200"
                 };
             });
             // configure DI for application services
