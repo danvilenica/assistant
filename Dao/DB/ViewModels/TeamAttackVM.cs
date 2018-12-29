@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("TeamAttacks")]
-    public class TeamAttack
+    public class TeamAttackVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public int Goals { get; set; }
         public decimal GoalsPerMatch { get; set; }

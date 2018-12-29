@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("SocialNetworkInfos")]
-    public class SocialNetworkInfo
+    public class SocialNetworkInfoVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }

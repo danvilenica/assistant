@@ -1,12 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("TeamStats")]
-    public class TeamStats
+    public class TeamStatsVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public string Season { get; set; }
@@ -17,15 +15,15 @@ namespace Dao.DB.Models
         public Guid ClubTeamPlayId { get; set; }
 
         [ForeignKey("TeamAttackId")]
-        public virtual TeamAttack TeamAttack { get; set; }
+        public virtual TeamAttackVM TeamAttack { get; set; }
 
         [ForeignKey("DisciplineId")]
-        public virtual Discipline Discipline { get; set; }
+        public virtual DisciplineVM Discipline { get; set; }
 
         [ForeignKey("TeamDefenceId")]
-        public virtual TeamDefense TeamDefence { get; set; }
+        public virtual TeamDefenseVM TeamDefence { get; set; }
 
         [ForeignKey("ClubTeamPlayId")]
-        public virtual ClubTeamPlay ClubTeamPlay { get; set; }
+        public virtual ClubTeamPlayVM ClubTeamPlay { get; set; }
     }
 }

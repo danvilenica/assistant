@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("PersonalDetails")]
-    public class PersonalDetail
+    public class PersonalDetailVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Nationality { get; set; }
         public int Age { get; set; }

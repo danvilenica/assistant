@@ -1,12 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("SeasonHistoryStats")]
-    public class SeasonHistoryStats
+    public class SeasonHistoryStatsVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public int MyProperty { get; set; }
     //    public id: string;

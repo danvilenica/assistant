@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dao.DB.Models
+namespace Dao.DB.ViewModels
 {
-    [Table("Disciplines")]
-    public class Discipline
+    public class DisciplineVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id{ get; set; }
         public int YellowCards{ get; set; }
         public int RedCards{ get; set; }
