@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebApi.Services;
 
 namespace WebApi
 {
@@ -81,14 +82,12 @@ namespace WebApi
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false,
-
-                    ValidIssuer = "http://localhost:4200",
-                    ValidAudience = "http://localhost:4200"
+                    ValidateAudience = false
                 };
             });
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ILeagueService, LeagueService>();
         }
 
 
