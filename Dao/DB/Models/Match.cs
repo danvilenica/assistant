@@ -16,6 +16,7 @@ namespace Dao.DB.Models
         public int AwayTeamId { get; set; }
         public int StadiumId { get; set; }
         public int SeasonId { get; set; }
+        public DateTime MatchDate { get; set; }
 
         public Season Season { get; set; }
         public Stadium Stadium { get; set; }

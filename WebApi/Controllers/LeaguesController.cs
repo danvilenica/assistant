@@ -2,18 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssistantWebApi.Helpers;
+using AutoMapper;
+using Dao.DB.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    public class LeagueController : Controller
+    [Route("api/leagues")]
+    public class LeaguesController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private ILeagueService _leagueService;
+        private IMapper _mapper;
+
+        public LeaguesController(ILeagueService leagueService, IMapper mapper)
         {
-            return new string[] { "value1", "value2" };
+            _leagueService = leagueService;
+            _mapper = mapper;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var leagues = _leagueService.GetAll();
+            return Ok(leagues);
         }
 
         // GET api/values/5
