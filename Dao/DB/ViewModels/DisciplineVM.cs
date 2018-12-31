@@ -9,7 +9,6 @@ namespace Dao.DB.ViewModels
 {
     public class DisciplineVM
     {
-        public Guid Id{ get; set; }
         public int YellowCards{ get; set; }
         public int RedCards{ get; set; }
         public int Fauls{ get; set; }

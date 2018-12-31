@@ -9,7 +9,6 @@ namespace Dao.DB.ViewModels
 {
     public class PlayerAttackVM
     {
-        public Guid Id { get; set; }
         public int Goals { get; set; }
         public decimal GoalsPerMatch { get; set; }
         public int HeadedGoals { get; set; }

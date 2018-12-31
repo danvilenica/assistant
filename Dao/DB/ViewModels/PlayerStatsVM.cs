@@ -5,6 +5,9 @@ namespace Dao.DB.ViewModels
 {
     public class PlayerStatsVM
     {
-        public Guid Id { get; set; }
+        public DisciplineVM Discipline { get; set; }
+        public PlayerAttackVM PlayerAttack { get; set; }
+        public PlayerDefenseVM PlayerDefense { get; set; }
+        public PlayerTeamPlayVM PlayerTeamPlay { get; set; }
     }
 }

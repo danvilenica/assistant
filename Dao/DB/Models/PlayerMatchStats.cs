@@ -47,5 +47,13 @@ namespace Dao.DB.Models
         public decimal PassAccuracy { get; set; }
         public int ThroughBalls { get; set; }
         public int AccurateLongBalls { get; set; }
+
+        public int MatchId { get; set; }
+        public int PlayerId { get; set; }
+        public int SeasonTeamId { get; set; }
+
+        public Match Match { get; set; }
+        public Player Player { get; set; }
+        public SeasonTeam SeasonTeam { get; set; }
     }
 }

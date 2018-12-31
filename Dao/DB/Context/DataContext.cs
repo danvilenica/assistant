@@ -24,5 +24,6 @@ namespace Dao.DB.Context
         public DbSet<SeasonTeam> SeasonTeams{ get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<TeamMatch> TeamMatches { get; set; }
+        public DbSet<TeamPlayer> TeamPlayers { get; set; }
     }
 }

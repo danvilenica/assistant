@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dao.DB.ViewModels
 {
-    public class DdlTeamVM
+    public class IdsVM
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int LeagueId { get; set; }
+        public int HomeId { get; set; }
+        public int AwayId { get; set; }
     }
 }

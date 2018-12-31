@@ -9,11 +9,13 @@ namespace Dao.DB.ViewModels
 {
     public class PersonalDetailVM
     {
-        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ImagePath { get; set; }
         public string Nationality { get; set; }
-        public int Age { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
-        public DateTime DateOfBirth { get; set; }        
+        public DateTime DateOfBirth { get; set; }
+        public int Age => DateTime.Now.Year - DateOfBirth.Year;
     }
 }

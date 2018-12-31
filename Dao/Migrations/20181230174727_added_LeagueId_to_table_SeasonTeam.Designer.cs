@@ -4,14 +4,16 @@ using Dao.DB.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181230174727_added_LeagueId_to_table_SeasonTeam")]
+    partial class added_LeagueId_to_table_SeasonTeam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,8 +161,6 @@ namespace Dao.Migrations
 
                     b.Property<int>("Interceptions");
 
-                    b.Property<int>("MatchId");
-
                     b.Property<int>("Offsides");
 
                     b.Property<decimal>("PassAccuracy");
@@ -169,13 +169,9 @@ namespace Dao.Migrations
 
                     b.Property<int>("PenaltiesScored");
 
-                    b.Property<int>("PlayerId");
-
                     b.Property<int>("Recoveries");
 
                     b.Property<int>("RedCards");
-
-                    b.Property<int>("SeasonTeamId");
 
                     b.Property<int>("Shots");
 
@@ -192,12 +188,6 @@ namespace Dao.Migrations
                     b.Property<int>("YellowCards");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MatchId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("SeasonTeamId");
 
                     b.ToTable("PlayersMatchStats");
                 });
@@ -282,23 +272,11 @@ namespace Dao.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CleanSheets");
-
-                    b.Property<int>("Goals");
-
                     b.Property<int>("MatchId");
 
                     b.Property<int>("MatchStatus");
 
-                    b.Property<int>("PenaltiesScored");
-
-                    b.Property<int>("PenaltiesWon");
-
-                    b.Property<int>("RedCards");
-
                     b.Property<int>("TeamId");
-
-                    b.Property<int>("YellowCards");
 
                     b.HasKey("Id");
 
@@ -307,29 +285,6 @@ namespace Dao.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("TeamMatches");
-                });
-
-            modelBuilder.Entity("Dao.DB.Models.TeamPlayer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PlayerId");
-
-                    b.Property<int>("SeasonId");
-
-                    b.Property<int>("TeamId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("SeasonId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("TeamPlayers");
                 });
 
             modelBuilder.Entity("Dao.DB.Models.User", b =>
@@ -376,24 +331,6 @@ namespace Dao.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Dao.DB.Models.PlayerMatchStats", b =>
-                {
-                    b.HasOne("Dao.DB.Models.Match", "Match")
-                        .WithMany()
-                        .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Dao.DB.Models.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Dao.DB.Models.SeasonTeam", "SeasonTeam")
-                        .WithMany()
-                        .HasForeignKey("SeasonTeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Dao.DB.Models.SeasonTeam", b =>
                 {
                     b.HasOne("Dao.DB.Models.Season", "League")
@@ -425,24 +362,6 @@ namespace Dao.Migrations
                     b.HasOne("Dao.DB.Models.Match", "Match")
                         .WithMany()
                         .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Dao.DB.Models.Team", "Team")
-                        .WithMany()
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Dao.DB.Models.TeamPlayer", b =>
-                {
-                    b.HasOne("Dao.DB.Models.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Dao.DB.Models.Season", "Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Dao.DB.Models.Team", "Team")
