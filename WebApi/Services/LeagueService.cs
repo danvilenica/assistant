@@ -12,7 +12,7 @@ namespace WebApi.Services
 
     public interface ILeagueService
     {
-        Task<IEnumerable<DdlLeagueVM>> GetAll();
+        Task<List<DdlLeagueVM>> GetAll();
     }
 
     public class LeagueService : ILeagueService
@@ -24,7 +24,7 @@ namespace WebApi.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<DdlLeagueVM>> GetAll()
+        public async Task<List<DdlLeagueVM>> GetAll()
         {
             var leagues = await _context.Leagues
                 .Select(x => new DdlLeagueVM()
@@ -37,7 +37,7 @@ namespace WebApi.Services
                 .ConfigureAwait(false);
 
             var teams = await _context.SeasonTeams
-                .Where(x => x.Season.Year.Year == DateTime.Now.Year)
+                .Where(x => x.Season.Id == 1)
                 .Select(x => new DdlTeamVM()
                 {
                     Id = x.TeamId,
@@ -47,16 +47,7 @@ namespace WebApi.Services
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            foreach (var league in leagues)
-            {
-                foreach (var team in teams)
-                {
-                    if (league.Id == team.LeagueId)
-                    {
-                        league.Teams.Add(team);
-                    }
-                }
-            }
+            leagues[0].Teams.AddRange(teams);
 
             return leagues;
         }

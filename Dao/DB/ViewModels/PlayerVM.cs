@@ -10,7 +10,7 @@ namespace Dao.DB.ViewModels
     {
         public int Id { get; set; }
         public List<PlayerStatsVM> Stats { get; set; }
-        public PersonalDetailVM PersonalDetail { get; set; }
+        public PersonalDetailVM PersonalDetails { get; set; }
         public LeagueRecordVM LeagueRecord { get; set; }
         public SocialNetworkInfoVM SocialNetworkInfo { get; set; }
         public int Number { get; set; }

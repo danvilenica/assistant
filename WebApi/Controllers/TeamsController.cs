@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dao.DB.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using static WebApi.Services.TeamService;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [Route("api/teams")]
     public class TeamsController : Controller
     {
@@ -24,10 +26,10 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]IdsVM ids)
+        public Task<TeamsWithPlayersVM> Post([FromBody]IdsVM ids)
         {
             var teams = _teamService.GetByIds(ids);
-            return Ok(teams);
+            return teams;
         }
     }
 }

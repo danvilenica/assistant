@@ -15,8 +15,8 @@ namespace Dao.DB.Models
         public string Nationality { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
+        public string Height { get; set; }
+        public string Weight { get; set; }
         public string  ImagePath { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }

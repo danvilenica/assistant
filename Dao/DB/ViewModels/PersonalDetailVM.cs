@@ -13,8 +13,8 @@ namespace Dao.DB.ViewModels
         public string LastName { get; set; }
         public string ImagePath { get; set; }
         public string Nationality { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
+        public string Height { get; set; }
+        public string Weight { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age => DateTime.Now.Year - DateOfBirth.Year;
     }

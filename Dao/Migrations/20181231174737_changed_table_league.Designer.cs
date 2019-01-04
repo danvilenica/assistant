@@ -4,14 +4,16 @@ using Dao.DB.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181231174737_changed_table_league")]
+    partial class changed_table_league
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,7 +92,7 @@ namespace Dao.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<string>("Height");
+                    b.Property<int>("Height");
 
                     b.Property<string>("ImagePath");
 
@@ -102,7 +104,7 @@ namespace Dao.Migrations
 
                     b.Property<string>("Twitter");
 
-                    b.Property<string>("Weight");
+                    b.Property<int>("Weight");
 
                     b.HasKey("Id");
 
