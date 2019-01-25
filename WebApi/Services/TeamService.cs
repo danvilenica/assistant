@@ -41,7 +41,9 @@ namespace WebApi.Services
                 })
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
+
             homeTeam.Players = new List<PlayerVM>();
+
             var awayTeam = await _context.Teams
                 .Where(x => x.Id == ids.AwayId)
                 .Select(x => new TeamVM()
@@ -55,6 +57,7 @@ namespace WebApi.Services
                 })
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
+
             awayTeam.Players = new List<PlayerVM>();
 
             teams.Add(homeTeam);
@@ -113,7 +116,7 @@ namespace WebApi.Services
                             Instagram = x.Player.Instagram
                         }
                     })
-                    .Take(25)
+                    .Take(35)
                     .ToListAsync()
                     .ConfigureAwait(false);
 

@@ -26,16 +26,6 @@ namespace WebApi.Services
 
         public async Task<List<DdlLeagueVM>> GetAll()
         {
-            var leagues = await _context.Leagues
-                .Select(x => new DdlLeagueVM()
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Teams = new List<DdlTeamVM>()
-                })
-                .ToListAsync()
-                .ConfigureAwait(false);
-
             var teams = await _context.SeasonTeams
                 .Where(x => x.Season.Id == 1)
                 .Select(x => new DdlTeamVM()
@@ -44,9 +34,17 @@ namespace WebApi.Services
                     Name = x.Team.Name,
                     LeagueId = x.LeagueId
                 })
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .ToListAsync();
+            var leagues = await _context.Leagues.AsNoTracking()
+                .Select(x => new DdlLeagueVM()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+           
+                })
+                .ToListAsync();
 
+            leagues[0].Teams = new List<DdlTeamVM>();
             leagues[0].Teams.AddRange(teams);
 
             return leagues;
