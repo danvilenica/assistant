@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AssistantWebApi.Helpers;
+using AutoMapper;
 using Dao.DB.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,10 +27,22 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public Task<TeamsWithPlayersVM> Post([FromBody]IdsVM ids)
+        public async Task<ActionResult> Post([FromBody]IdsVM ids)
         {
-            var teams = _teamService.GetByIds(ids);
-            return teams;
+            try
+            {
+                var teams = await _teamService.GetByIds(ids);
+                if (teams == null)
+                {
+                    throw new AppException("Teams where not found");
+                }
+                return Ok(teams);
+            }
+            catch (AppException ex)
+            {
+                // return error message if there was an exception
+                return NotFound(new { message = ex.Message });
+            }            
         }
     }
 }

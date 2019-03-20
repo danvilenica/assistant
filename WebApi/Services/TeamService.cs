@@ -1,4 +1,5 @@
-﻿using Dao.DB.Context;
+﻿using AssistantWebApi.Helpers;
+using Dao.DB.Context;
 using Dao.DB.Models;
 using Dao.DB.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,11 @@ namespace WebApi.Services
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
 
+            if (homeTeam == null )
+            {
+                return null;
+            }
+
             homeTeam.Players = new List<PlayerVM>();
 
             var awayTeam = await _context.Teams
@@ -57,6 +63,11 @@ namespace WebApi.Services
                 })
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
+
+            if (awayTeam == null)
+            {
+                return null;
+            }
 
             awayTeam.Players = new List<PlayerVM>();
 
@@ -88,7 +99,7 @@ namespace WebApi.Services
             foreach (var team in teams)
             {
                 //Get team players
-                var teamPlayers = await _context.TeamPlayers
+                var teamPlayers = _context.TeamPlayers
                     .Where(x => x.TeamId == team.Id)
                     .Select(x => new PlayerVM()
                     {
@@ -117,52 +128,50 @@ namespace WebApi.Services
                         }
                     })
                     .Take(35)
-                    .ToListAsync()
-                    .ConfigureAwait(false);
+                    .ToList();
 
-                var seasons = await _context.Seasons
+                var seasons = _context.Seasons
                     .OrderBy(x => x.Id)
                     .Take(4)
-                    .ToListAsync()
-                    .ConfigureAwait(false);
+                    .ToList();
 
                 foreach (var player in teamPlayers)
                 {
                     player.Stats = new List<PlayerStatsVM>();
                     foreach (var season in seasons)
                     {
-                        var Goals = rnd.Next(0, 150);
-                        var GoalsPerMatch = rnd.Next(0, 150);
+                        var Goals = rnd.Next(10, 150);
+                        var GoalsPerMatch = rnd.Next(0, 4);
                         var BigChancesMissed = rnd.Next(9, 20);
-                        var FreekicksScored = rnd.Next(2, 30);
-                        var GoalsWithLeftFoot = rnd.Next(9, 50);
-                        var GoalsWithRightFoot = rnd.Next(8, 20);
-                        var HeadedGoals = rnd.Next(5, 10);
+                        var FreekicksScored = rnd.Next(2, Goals/2);
+                        var GoalsWithLeftFoot = rnd.Next(0, Goals/2);
+                        var GoalsWithRightFoot = rnd.Next(0, Goals/2);
+                        var HeadedGoals = rnd.Next(5, Goals/2);
                         var HitWoodwork = rnd.Next(4, 25);
-                        var PenaltiesScored = rnd.Next(5, 24);
-                        var Shots = rnd.Next(150, 350);
-                        var ShotsOnTarget = rnd.Next(50, 200);
-                        var Accuracy = rnd.Next(0, 150);
+                        var PenaltiesScored = rnd.Next(5, Goals/2);
+                        var Shots = rnd.Next(Goals, Goals*4);
+                        var ShotsOnTarget = rnd.Next(Shots/3, Shots);
+                        var Accuracy = rnd.Next(0, 50);
                         var Tackles = rnd.Next(0, 150);
-                        var TacklesSuccess = rnd.Next(0, 150);
+                        var TacklesSuccess = rnd.Next(0, Tackles);
                         var BlockedShots = rnd.Next(0, 150);
                         var Interceptions = rnd.Next(0, 150);
                         var Clearances = rnd.Next(0, 150);
-                        var HeadedClearance = rnd.Next(0, 150);
+                        var HeadedClearance = rnd.Next(0, Clearances);
                         var Recoveries = rnd.Next(0, 150);
                         var DuelsWon = rnd.Next(0, 150);
                         var DuelsLost = rnd.Next(0, 150);
-                        var Successful = rnd.Next(0, 150);
-                        var ErrorsLeadingToGoal = rnd.Next(0, 150);
+                        var Successful = rnd.Next(0, 60);
+                        var ErrorsLeadingToGoal = rnd.Next(0, 20);
                         var AerialBattlesWon = rnd.Next(0, 150);
                         var AerialBattlesLost = rnd.Next(0, 150);
-                        var Assists = rnd.Next(0, 150);
-                        var Passes = rnd.Next(0, 150);
-                        var PassesPerMatch = rnd.Next(0, 150);
+                        var Assists = rnd.Next(0, Goals);
+                        var Passes = rnd.Next(0, Assists*4);
+                        var PassesPerMatch = rnd.Next(Passes/3, Passes);
                         var BigChancesCreated = rnd.Next(0, 150);
-                        var Crosses = rnd.Next(0, 150);
-                        var ThroughBalls = rnd.Next(0, 150);
-                        var AccurateLongBalls = rnd.Next(0, 150);
+                        var Crosses = rnd.Next(0, Passes);
+                        var ThroughBalls = rnd.Next(0, Passes);
+                        var AccurateLongBalls = rnd.Next(0, Passes);
 
                         player.Stats.Add(new PlayerStatsVM()
                         {

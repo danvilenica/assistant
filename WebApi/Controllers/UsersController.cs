@@ -89,47 +89,47 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            var userVMs = _mapper.Map<IList<UserVM>>(users);
-            return Ok(userVMs);
-        }
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var users = _userService.GetAll();
+        //    var userVMs = _mapper.Map<IList<UserVM>>(users);
+        //    return Ok(userVMs);
+        //}
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var user = _userService.GetById(id);
-            var userVM = _mapper.Map<UserVM>(user);
-            return Ok(userVM);
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult GetById(int id)
+        //{
+        //    var user = _userService.GetById(id);
+        //    var userVM = _mapper.Map<UserVM>(user);
+        //    return Ok(userVM);
+        //}
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]UserVM userVM)
-        {
-            // map dto to entity and set id
-            var user = _mapper.Map<User>(userVM);
-            user.Id = id;
+        //[HttpPut("{id}")]
+        //public IActionResult Update(int id, [FromBody]UserVM userVM)
+        //{
+        //    // map dto to entity and set id
+        //    var user = _mapper.Map<User>(userVM);
+        //    user.Id = id;
 
-            try
-            {
-                // save 
-                _userService.Update(user, userVM.Password);
-                return Ok();
-            }
-            catch (AppException ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        //    try
+        //    {
+        //        // save 
+        //        _userService.Update(user, userVM.Password);
+        //        return Ok();
+        //    }
+        //    catch (AppException ex)
+        //    {
+        //        // return error message if there was an exception
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            _userService.Delete(id);
-            return Ok();
-        }
+        //[HttpDelete("{id}")]
+        //public IActionResult Delete(int id)
+        //{
+        //    _userService.Delete(id);
+        //    return Ok();
+        //}
     }
 }

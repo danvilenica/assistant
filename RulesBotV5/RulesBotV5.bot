@@ -1,0 +1,59 @@
+﻿{
+  "name": "RulesBotV5",
+  "padlock": "",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "c871813b-5119-452e-9e89-f53e648b6c62",
+      "subscriptionId": "f20dc14b-8a21-41f3-a7e4-c647a79f1bd6",
+      "resourceGroup": "MainResourceGroup",
+      "serviceName": "RulesBotV5",
+      "type": "abs",
+      "name": "RulesBotV5",
+      "id": "1"
+    },
+    {
+      "connectionString": "7Ayvf+9/P5XEAxY9YDuqrA==!Yyhgxbf28M8jmMCUcDNhAEgF8bUbKrC0FxnBX6I+8XBBnO+W3WHhJaNnnA2wL39PQKgTUXFtkvZMcvd+ctlxTKHj7BPQD1I+NGXScQK52uBYUm1BRdXKH3oTQuwHnaQL766/5Z380IS5xxnzcFR84tr4Ns99ccG5MUnsyG7olPeqe9i2vPJjkvs46kHUZVQbI+hbcKGHAbLO5Zar7PDFYQ==",
+      "tenantId": "c871813b-5119-452e-9e89-f53e648b6c62",
+      "subscriptionId": "f20dc14b-8a21-41f3-a7e4-c647a79f1bd6",
+      "resourceGroup": "MainResourceGroup",
+      "serviceName": "rulesstorage",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "6f919bcd-d6d6-4e17-9bb2-ceb7e81a423d",
+      "appPassword": "NkhlXufcTopRHdXj9ErJkA==!jq09Qjzp6k90LsHbzveypPrVTJ2UKiLBHMViNvFN7gA=",
+      "endpoint": "https://rulesbotv5.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "appId": "1126769f-3d30-48e3-9e8a-bb561ad9c215",
+      "authoringKey": "UJr5/RDhSNDk/UtQDjw99g==!eYCUivx/RYu4MW5lRT7SERT19+mM7n+NJEGyN8W2SVTHwKODSsZ1i7jKZKnIidkT",
+      "version": "0.1",
+      "region": "westeurope",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "5"
+    },
+    {
+      "type": "qna",
+      "name": "RulesQnA",
+      "kbId": "223f3e47-69f0-42a9-b535-56a4a304c2d3",
+      "subscriptionKey": "f20dc14b-8a21-41f3-a7e4-c647a79f1bd6",
+      "endpointKey": "3f62db9e-abd0-41bf-a08a-3a9f70b90946",
+      "hostname": "https://rulesqna.azurewebsites.net/qnamaker",
+      "id": "117"
+    }
+  ]
+}
